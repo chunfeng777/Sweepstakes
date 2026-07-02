@@ -256,6 +256,16 @@ const navTop = ['Faved Games', 'Following', 'Continue Playing']
 const categories = ['Stake Originals', 'Slots', 'Megaways', 'Jackpots', 'Live Dealers', 'Table Games', 'Game Shows', 'New Releases'] as const
 type Category = (typeof categories)[number]
 const providers = ['All Providers', 'Pragmatic Play', 'Pragmatic Play Live', 'Evolution', 'NetEnt', 'Play n GO', 'Microgaming', 'Big Time Gaming', 'Blueprint Gaming', 'Hacksaw Gaming', 'OKK Originals', 'Spin Reaper', 'Kangaroo Fleet', 'Mining Mayhem']
+const categoryCatalogTotals: Record<Category, number> = {
+  'Stake Originals': 24,
+  Slots: 128,
+  Megaways: 36,
+  Jackpots: 18,
+  'Live Dealers': 42,
+  'Table Games': 28,
+  'Game Shows': 16,
+  'New Releases': 54,
+}
 const categoryGuides = {
   'Stake Originals': {
     title: 'Stake Originals Style Games',
@@ -450,7 +460,7 @@ const dragDeltaX = ref(0)
 let carouselTimer: number | undefined
 
 const categoryCounts = computed<Record<Category, number>>(() =>
-  Object.fromEntries(categories.map((category) => [category, allGames.value.filter((game) => game.category === category).length])) as Record<Category, number>,
+  Object.fromEntries(categories.map((category) => [category, categoryCatalogTotals[category]])) as Record<Category, number>,
 )
 
 const filteredGames = computed(() => {
@@ -632,7 +642,7 @@ onUnmounted(() => {
         </label>
       </div>
       <div class="account">
-        <div class="balance"><span>$ 88,420.00</span><button type="button" @click="openModal('Wallet', 'Wallet panel opened. Balance, redeem, and deposit actions would live here.')">+ Wallet</button></div>
+        <div class="balance"><span>$ 0.00</span><button type="button" @click="openModal('Wallet', 'Wallet panel opened. Balance, redeem, and deposit actions would live here.')">+ Wallet</button></div>
         <div class="top-menu">
           <button class="icon-btn bell-icon" type="button" aria-label="Notifications" :aria-expanded="topMenu === 'notifications'" @click="toggleTopMenu('notifications')">
             <span></span>
