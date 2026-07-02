@@ -84,8 +84,120 @@ function splitTitle(title: string) {
   return lines.slice(0, 3)
 }
 
-function themeArt(themeKey: string, accent: string) {
+function themeArt(themeKey: string, accent: string, title = '') {
   const commonShadow = `filter="url(#softShadow)"`
+  const game = title.toLowerCase()
+
+  if (game.includes('sweet bonanza')) {
+    return `
+      <circle cx="118" cy="83" r="50" fill="#ff8bd8" ${commonShadow}/>
+      <circle cx="86" cy="66" r="24" fill="#78e9ff"/>
+      <circle cx="151" cy="61" r="22" fill="#fff06a"/>
+      <circle cx="120" cy="94" r="38" fill="#ffffff" opacity=".92"/>
+      <path d="M82 119c28 28 66 28 94 0" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+      <path d="M82 119c28 22 66 22 94 0" fill="none" stroke="#7d3cff" stroke-width="5" stroke-linecap="round" opacity=".55"/>`
+  }
+
+  if (game.includes('bass') || game.includes('fishin')) {
+    return `
+      <path d="M58 104c34-45 96-46 129 0-33 45-95 45-129 0Z" fill="#38d6ff" ${commonShadow}/>
+      <path d="M59 104 28 77v56Z" fill="#7dff67"/>
+      <path d="M105 72c23 20 23 44 0 65" fill="none" stroke="#ffffff" stroke-width="7" opacity=".54"/>
+      <circle cx="153" cy="91" r="7" fill="#061722"/>
+      <path d="M171 112c-12 13-28 19-48 19" fill="none" stroke="#061722" stroke-width="5" stroke-linecap="round" opacity=".45"/>`
+  }
+
+  if (game.includes('gates') || game.includes('olympus') || game.includes('merlin')) {
+    return `
+      <path d="M125 28 74 114h39l-18 79 78-108h-44l-4-57Z" fill="#ffd166" ${commonShadow}/>
+      <path d="M57 160h126M70 141h100M80 121h80" stroke="#ffffff" stroke-width="8" stroke-linecap="round" opacity=".28"/>
+      <circle cx="82" cy="78" r="27" fill="#ffffff" opacity=".18"/>
+      <circle cx="158" cy="142" r="35" fill="#ffffff" opacity=".12"/>`
+  }
+
+  if (game.includes('book')) {
+    return `
+      <rect x="64" y="42" width="112" height="135" rx="13" fill="#f4b860" ${commonShadow}/>
+      <rect x="82" y="61" width="76" height="98" rx="8" fill="#4a2b18" opacity=".78"/>
+      <path d="M101 82h39M97 106h47M101 130h38" stroke="#fff4d6" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="120" cy="110" r="55" fill="none" stroke="#ffcb45" stroke-width="5" opacity=".18"/>`
+  }
+
+  if (game.includes('starburst')) {
+    return `
+      <path d="M120 34 183 88 156 171H84L57 88Z" fill="#43f5b6" ${commonShadow}/>
+      <path d="M57 88h126M84 88l36 83 36-83M96 54l-12 34M144 54l12 34" stroke="#ffffff" stroke-width="5" opacity=".58"/>
+      <path d="M120 19v36M120 168v30M42 96h34M164 96h34" stroke="#b9ffef" stroke-width="6" stroke-linecap="round" opacity=".7"/>`
+  }
+
+  if (game.includes('mega') || game.includes('coin') || game.includes('quantum')) {
+    return `
+      <circle cx="120" cy="105" r="68" fill="#ffcb45" ${commonShadow}/>
+      <circle cx="120" cy="105" r="48" fill="#4a1630" opacity=".22"/>
+      <path d="M81 106h78M120 67v78" stroke="#ffffff" stroke-width="9" stroke-linecap="round" opacity=".75"/>
+      <text x="120" y="126" text-anchor="middle" font-family="Inter,Arial" font-size="42" font-weight="900" fill="#ffffff">SC</text>`
+  }
+
+  if (game.includes('roulette')) {
+    return `
+      <circle cx="120" cy="108" r="70" fill="#263443" ${commonShadow}/>
+      <circle cx="120" cy="108" r="52" fill="#1f7a49"/>
+      <path d="M120 38v140M50 108h140M70 58l100 100M170 58 70 158" stroke="#ffffff" stroke-width="5" opacity=".5"/>
+      <circle cx="120" cy="108" r="18" fill="#ff5c7a"/>
+      <text x="120" y="116" text-anchor="middle" font-family="Inter,Arial" font-size="18" font-weight="900" fill="#ffffff">0</text>`
+  }
+
+  if (game.includes('blackjack') || game.includes('baccarat')) {
+    return `
+      <ellipse cx="120" cy="122" rx="82" ry="48" fill="#1f7a49" ${commonShadow}/>
+      <rect x="70" y="58" width="48" height="72" rx="8" fill="#fff"/>
+      <rect x="124" y="58" width="48" height="72" rx="8" fill="#7dff67"/>
+      <text x="94" y="104" text-anchor="middle" font-family="Inter,Arial" font-size="34" font-weight="900" fill="#102f36">A</text>
+      <text x="148" y="104" text-anchor="middle" font-family="Inter,Arial" font-size="34" font-weight="900" fill="#102f36">K</text>`
+  }
+
+  if (game.includes('plinko')) {
+    return `
+      <path d="M54 62h132l-21 124H75Z" fill="#0b1d2a" opacity=".45" ${commonShadow}/>
+      <g fill="#7dff67">${[72,96,120,144,168].map((x) => `<circle cx="${x}" cy="82" r="6"/>`).join('')}${[84,108,132,156].map((x) => `<circle cx="${x}" cy="116" r="6"/>`).join('')}${[72,96,120,144,168].map((x) => `<circle cx="${x}" cy="150" r="6"/>`).join('')}</g>
+      <circle cx="120" cy="45" r="17" fill="#ffffff"/>`
+  }
+
+  if (game.includes('mines')) {
+    return `
+      <rect x="57" y="52" width="126" height="126" rx="18" fill="#102f46" ${commonShadow}/>
+      <g fill="#253744">${[0,1,2].map((row) => [0,1,2].map((col) => `<rect x="${73 + col * 35}" y="${68 + row * 35}" width="24" height="24" rx="5"/>`).join('')).join('')}</g>
+      <circle cx="120" cy="115" r="18" fill="#ff5c7a"/>
+      <path d="M120 91v-14M120 153v-14M96 115H82M158 115h-14" stroke="#ffcb45" stroke-width="6" stroke-linecap="round"/>`
+  }
+
+  if (game.includes('dice')) {
+    return `
+      <rect x="70" y="58" width="100" height="100" rx="18" fill="#ffffff" ${commonShadow}/>
+      <g fill="#102f46"><circle cx="96" cy="84" r="8"/><circle cx="144" cy="84" r="8"/><circle cx="120" cy="108" r="8"/><circle cx="96" cy="132" r="8"/><circle cx="144" cy="132" r="8"/></g>`
+  }
+
+  if (game.includes('limbo')) {
+    return `
+      <path d="M67 143c38-66 72-91 110-116-18 49-43 86-91 130Z" fill="#7dff67" ${commonShadow}/>
+      <circle cx="151" cy="56" r="20" fill="#ffffff" opacity=".9"/>
+      <path d="M59 159c28 5 63-1 92-22" fill="none" stroke="#38d6ff" stroke-width="8" stroke-linecap="round"/>`
+  }
+
+  if (game.includes('keno')) {
+    return `
+      <rect x="55" y="54" width="130" height="120" rx="18" fill="#102f46" ${commonShadow}/>
+      <g font-family="Inter,Arial" font-size="18" font-weight="900" text-anchor="middle">${[7,12,19,24,33,41].map((n, i) => `<circle cx="${82 + (i % 3) * 38}" cy="${85 + Math.floor(i / 3) * 45}" r="16" fill="${i % 2 ? '#38d6ff' : '#7dff67'}"/><text x="${82 + (i % 3) * 38}" y="${91 + Math.floor(i / 3) * 45}" fill="#061722">${n}</text>`).join('')}</g>`
+  }
+
+  if (game.includes('monopoly') || game.includes('dream') || game.includes('crazy')) {
+    return `
+      <circle cx="120" cy="110" r="72" fill="#a78bfa" ${commonShadow}/>
+      <path d="M120 38v144M48 110h144M69 59l102 102M171 59 69 161" stroke="#ffffff" stroke-width="5" opacity=".58"/>
+      <circle cx="120" cy="110" r="22" fill="#3d2a55"/>
+      <path d="M120 110 165 70" stroke="#ffcb45" stroke-width="8" stroke-linecap="round"/>`
+  }
+
   const art: Record<string, string> = {
     candy: `
       <circle cx="120" cy="92" r="48" fill="#ff9bd9" ${commonShadow}/>
@@ -146,8 +258,10 @@ function themeArt(themeKey: string, accent: string) {
 function coverImage(game: Game) {
   const theme = themes[game.theme] ?? themes.original
   const titleLines = splitTitle(game.title)
+  const longestTitleLine = Math.max(...titleLines.map((line) => line.length))
+  const titleFontSize = Math.min(titleLines.length > 2 ? 25 : 29, longestTitleLine > 10 ? 25 : 29)
   const titleSvg = titleLines
-    .map((line, index) => `<text x="120" y="${224 + index * 30}" text-anchor="middle" font-family="Inter,Arial" font-size="${titleLines.length > 2 ? 25 : 29}" font-weight="900" fill="#ffffff" stroke="#061722" stroke-width="4" paint-order="stroke">${escapeSvg(line)}</text>`)
+    .map((line, index) => `<text x="120" y="${224 + index * 30}" text-anchor="middle" font-family="Inter,Arial" font-size="${titleFontSize}" font-weight="900" fill="#ffffff" stroke="#061722" stroke-width="4" paint-order="stroke">${escapeSvg(line)}</text>`)
     .join('')
   const provider = escapeSvg(game.provider.toUpperCase())
   const svg = `
@@ -174,7 +288,7 @@ function coverImage(game: Game) {
       <circle cx="184" cy="60" r="88" fill="url(#glow)"/>
       <path d="M13 213c44-38 71 32 111-7s63 19 103-22" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".23"/>
       <path d="M17 218c44-38 70 32 110-7s64 19 104-22" fill="none" stroke="${theme.accent}" stroke-width="7" stroke-linecap="round" opacity=".88"/>
-      ${themeArt(game.theme, theme.accent)}
+      ${themeArt(game.theme, theme.accent, game.title)}
       <rect x="0" y="176" width="240" height="144" fill="url(#titleFade)"/>
       ${titleSvg}
       <text x="120" y="300" text-anchor="middle" font-family="Inter,Arial" font-size="9" font-weight="800" letter-spacing="1.2" fill="#d2e5f7" opacity=".86">${provider}</text>
@@ -256,16 +370,6 @@ const navTop = ['Faved Games', 'Following', 'Continue Playing']
 const categories = ['Stake Originals', 'Slots', 'Megaways', 'Jackpots', 'Live Dealers', 'Table Games', 'Game Shows', 'New Releases'] as const
 type Category = (typeof categories)[number]
 const providers = ['All Providers', 'Pragmatic Play', 'Pragmatic Play Live', 'Evolution', 'NetEnt', 'Play n GO', 'Microgaming', 'Big Time Gaming', 'Blueprint Gaming', 'Hacksaw Gaming', 'OKK Originals', 'Spin Reaper', 'Kangaroo Fleet', 'Mining Mayhem']
-const categoryCatalogTotals: Record<Category, number> = {
-  'Stake Originals': 24,
-  Slots: 128,
-  Megaways: 36,
-  Jackpots: 18,
-  'Live Dealers': 42,
-  'Table Games': 28,
-  'Game Shows': 16,
-  'New Releases': 54,
-}
 const categoryGuides = {
   'Stake Originals': {
     title: 'Stake Originals Style Games',
@@ -460,7 +564,7 @@ const dragDeltaX = ref(0)
 let carouselTimer: number | undefined
 
 const categoryCounts = computed<Record<Category, number>>(() =>
-  Object.fromEntries(categories.map((category) => [category, categoryCatalogTotals[category]])) as Record<Category, number>,
+  Object.fromEntries(categories.map((category) => [category, allGames.value.filter((game) => game.category === category).length])) as Record<Category, number>,
 )
 
 const filteredGames = computed(() => {
