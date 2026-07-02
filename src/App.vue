@@ -364,6 +364,63 @@ const allGames = ref<Game[]>([
   { title: 'Coin Bonanza', players: 39, category: 'Jackpots', provider: 'Mining Mayhem', theme: 'jackpot' },
   { title: 'Quantum Riches', players: 34, category: 'Jackpots', provider: 'Spin Reaper', theme: 'jackpot' },
   { title: 'Majestic of Merlin', players: 31, category: 'Megaways', provider: 'Kangaroo Fleet', theme: 'myth' },
+  { title: 'Fish', players: 181, category: 'Slots', provider: 'Twist Gaming', theme: 'fish', favorite: true },
+  { title: 'Buffalo Hold and Win', players: 177, category: 'Slots', provider: 'Booming Games', theme: 'jackpot' },
+  { title: 'Le Catcher', players: 81, category: 'Slots', provider: 'Hacksaw Gaming', theme: 'adventure', following: true },
+  { title: 'Diamonds Power XXL', players: 146, category: 'Jackpots', provider: 'Playson', theme: 'gems' },
+  { title: 'Le Prechaun', players: 207, category: 'Slots', provider: 'Hacksaw Gaming', theme: 'adventure', favorite: true },
+  { title: 'Kill Switch', players: 61, category: 'Slots', provider: 'Terminal Games', theme: 'classic' },
+  { title: 'Secret Order', players: 24, category: 'Slots', provider: 'Hacksaw Gaming', theme: 'myth' },
+  { title: 'Iron Sight', players: 53, category: 'Slots', provider: 'Hacksaw Gaming', theme: 'classic' },
+  { title: 'Wanted Dead or A Wild', players: 48, category: 'Megaways', provider: 'Hacksaw Gaming', theme: 'adventure' },
+  { title: 'Mother Clucker', players: 43, category: 'Slots', provider: 'Terminal Games', theme: 'adventure' },
+  { title: 'Buckshot Benny', players: 35, category: 'Slots', provider: 'Titan Gaming', theme: 'adventure' },
+  { title: 'Canyon Gold Bonanza', players: 45, category: 'Megaways', provider: 'Titan Gaming', theme: 'jackpot' },
+  { title: 'Soul Catcher', players: 19, category: 'New Releases', provider: 'Knucklehead Syndicate', theme: 'myth' },
+  { title: 'Tome of Life', players: 93, category: 'Stake Originals', provider: 'OKK Originals', theme: 'myth' },
+  { title: 'Battle Sharks', players: 27, category: 'Slots', provider: 'Pocket Play', theme: 'fish' },
+  { title: 'Supercharged Clovers', players: 57, category: 'Jackpots', provider: 'Playson', theme: 'gems' },
+  { title: 'Sugar Gates 1K', players: 35, category: 'Megaways', provider: 'Colorful Play', theme: 'candy' },
+  { title: 'Thor Hammered', players: 11, category: 'New Releases', provider: 'Massive Studios', theme: 'myth' },
+  { title: 'Le Fisherman', players: 54, category: 'Slots', provider: 'Hacksaw Gaming', theme: 'fish' },
+  { title: 'The Hermit', players: 16, category: 'Slots', provider: 'Comeback', theme: 'adventure' },
+  { title: 'Candy Dash', players: 57, category: 'Slots', provider: 'Paperclip Gaming', theme: 'candy' },
+  { title: 'Dragonspire Frostfall', players: 33, category: 'New Releases', provider: 'Spin Reaper', theme: 'myth' },
+  { title: 'Wage Slave', players: 21, category: 'New Releases', provider: 'Pixel Forge', theme: 'classic' },
+  { title: 'Wizard 2000', players: 28, category: 'Megaways', provider: 'Mining Mayhem', theme: 'myth' },
+  { title: 'Jittery Critters', players: 18, category: 'New Releases', provider: 'Massive Studios', theme: 'adventure' },
+  { title: 'Soul Rush', players: 22, category: 'New Releases', provider: 'Knucklehead Syndicate', theme: 'gems' },
+  { title: 'Full Chamber', players: 36, category: 'Jackpots', provider: 'Phantom Interactive', theme: 'classic' },
+  { title: 'Le Cowboy', players: 26, category: 'Slots', provider: 'Hacksaw Gaming', theme: 'adventure' },
+  { title: 'Bounty Stacks', players: 49, category: 'Jackpots', provider: 'Mining Mayhem', theme: 'jackpot' },
+  { title: 'Diamond Rush', players: 78, category: 'Jackpots', provider: 'Playson', theme: 'gems' },
+  { title: 'Wild Wheel', players: 67, category: 'Game Shows', provider: 'Evolution', theme: 'wheel' },
+  { title: 'Boom City', players: 55, category: 'Game Shows', provider: 'Pragmatic Play Live', theme: 'wheel' },
+  { title: 'Sweet Bonanza CandyLand', players: 73, category: 'Game Shows', provider: 'Pragmatic Play Live', theme: 'candy' },
+  { title: 'Crazy Coin Flip', players: 46, category: 'Game Shows', provider: 'Evolution', theme: 'wheel' },
+  { title: 'Cash or Crash', players: 38, category: 'Game Shows', provider: 'Evolution', theme: 'wheel' },
+  { title: 'Mega Wheel Live', players: 42, category: 'Live Dealers', provider: 'Pragmatic Play Live', theme: 'live' },
+  { title: 'Immersive Roulette', players: 58, category: 'Live Dealers', provider: 'Evolution', theme: 'live' },
+  { title: 'Live Dragon Tiger', players: 44, category: 'Live Dealers', provider: 'Evolution', theme: 'live' },
+  { title: 'Live Sic Bo', players: 33, category: 'Live Dealers', provider: 'Pragmatic Play Live', theme: 'live' },
+  { title: 'Speed Blackjack', players: 72, category: 'Live Dealers', provider: 'Evolution', theme: 'live' },
+  { title: 'Salon Prive Baccarat', players: 29, category: 'Live Dealers', provider: 'Evolution', theme: 'live' },
+  { title: 'Auto Roulette', players: 37, category: 'Live Dealers', provider: 'Pragmatic Play Live', theme: 'live' },
+  { title: 'Infinite Blackjack', players: 64, category: 'Table Games', provider: 'Evolution', theme: 'table' },
+  { title: 'American Roulette', players: 45, category: 'Table Games', provider: 'Pragmatic Play Live', theme: 'table' },
+  { title: 'No Commission Baccarat', players: 39, category: 'Table Games', provider: 'Pragmatic Play Live', theme: 'table' },
+  { title: 'Caribbean Stud', players: 28, category: 'Table Games', provider: 'Play n GO', theme: 'table' },
+  { title: 'Three Card Poker', players: 25, category: 'Table Games', provider: 'NetEnt', theme: 'table' },
+  { title: 'Casino Holdem', players: 22, category: 'Table Games', provider: 'Microgaming', theme: 'table' },
+  { title: 'Roulette Royale', players: 52, category: 'Table Games', provider: 'Evolution', theme: 'table' },
+  { title: 'Crash', players: 86, category: 'Stake Originals', provider: 'OKK Originals', theme: 'original', recent: true },
+  { title: 'Slide', players: 75, category: 'Stake Originals', provider: 'OKK Originals', theme: 'original' },
+  { title: 'Tower', players: 68, category: 'Stake Originals', provider: 'OKK Originals', theme: 'original' },
+  { title: 'Dragon Tower', players: 63, category: 'Stake Originals', provider: 'OKK Originals', theme: 'original' },
+  { title: 'Hilo', players: 58, category: 'Stake Originals', provider: 'OKK Originals', theme: 'original' },
+  { title: 'Roulette Original', players: 52, category: 'Stake Originals', provider: 'OKK Originals', theme: 'original' },
+  { title: 'Nitro Nights', players: 41, category: 'New Releases', provider: 'Hacksaw Gaming', theme: 'classic' },
+  { title: 'Rug Dealer', players: 30, category: 'New Releases', provider: 'Avatar UX', theme: 'adventure' },
 ])
 
 const navTop = ['Faved Games', 'Following', 'Continue Playing']
@@ -549,7 +606,8 @@ const activeProvider = ref('All Providers')
 const activeSort = ref('Most Popular')
 const activeBetTab = ref<BetTab>('Recent Bets')
 const query = ref('')
-const visibleCount = ref(16)
+const defaultVisibleCount = 24
+const visibleCount = ref(defaultVisibleCount)
 const openMenu = ref<'filter' | 'provider' | 'sort' | null>(null)
 const selectedGame = ref<Game | null>(null)
 const modalTitle = ref('')
@@ -602,20 +660,20 @@ function showToast(message: string) {
 function setCategory(category: Category) {
   activeCategory.value = category
   activeNav.value = ''
-  visibleCount.value = 16
+  visibleCount.value = defaultVisibleCount
   showToast(`${category} selected`)
 }
 
 function setNav(item: string) {
   activeNav.value = item
-  visibleCount.value = 16
+  visibleCount.value = defaultVisibleCount
   showToast(`${item} selected`)
 }
 
 function setProvider(provider: string) {
   activeProvider.value = provider
   openMenu.value = null
-  visibleCount.value = 16
+  visibleCount.value = defaultVisibleCount
   showToast(`${provider} applied`)
 }
 
@@ -629,7 +687,7 @@ function resetFilters() {
   query.value = ''
   activeProvider.value = 'All Providers'
   activeNav.value = ''
-  visibleCount.value = 16
+  visibleCount.value = defaultVisibleCount
   openMenu.value = null
   showToast('Filters cleared')
 }
