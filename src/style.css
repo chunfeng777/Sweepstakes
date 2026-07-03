@@ -1055,3 +1055,32 @@ td:first-child { color: #d2e5f7; font-weight: 800; }
   font-weight: 900;
   letter-spacing: 1px;
 }
+.auth-actions {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+.auth-actions button {
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  height: 34px;
+  padding: 0 14px;
+}
+.login-btn {
+  background: #203745;
+  color: #d6e3ec;
+}
+.login-btn:hover { background: #2a4352; color: #fff; }
+.register-btn {
+  background: #7dff67;
+  color: #013a00;
+}
+.register-btn:hover { filter: brightness(1.05); }
+@media (max-width: 760px) {
+  .auth-actions { gap: 6px; }
+  .auth-actions button { font-size: 11px; height: 30px; padding: 0 10px; }
+}
+@media (max-width: 560px) {
+  .auth-actions { display: none; }
+}

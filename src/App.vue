@@ -967,6 +967,10 @@ onUnmounted(() => {
       </div>
       <div class="account">
         <div class="balance"><span>$ 0.00</span><button type="button" @click="openModal('Wallet', 'Wallet panel opened. Balance, redeem, and deposit actions would live here.')">+ Wallet</button></div>
+        <div class="auth-actions">
+          <button class="login-btn" type="button" @click="openModal('Login', 'Login panel opened. Enter your email or username and password to continue.')">Login</button>
+          <button class="register-btn" type="button" @click="openModal('Register', 'Registration panel opened. Create an OKK STAKES account to save games, rewards, and settings.')">Register</button>
+        </div>
         <div class="top-menu">
           <button class="icon-btn bell-icon" type="button" aria-label="Notifications" :aria-expanded="topMenu === 'notifications'" @click="toggleTopMenu('notifications')">
             <span></span>
