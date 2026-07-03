@@ -427,6 +427,41 @@ const navTop = ['Faved Games', 'Following', 'Continue Playing']
 const categories = ['Stake Originals', 'Slots', 'Megaways', 'Jackpots', 'Live Dealers', 'Table Games', 'Game Shows', 'New Releases'] as const
 type Category = (typeof categories)[number]
 const providers = ['All Providers', 'Pragmatic Play', 'Pragmatic Play Live', 'Evolution', 'NetEnt', 'Play n GO', 'Microgaming', 'Big Time Gaming', 'Blueprint Gaming', 'Hacksaw Gaming', 'OKK Originals', 'Spin Reaper', 'Kangaroo Fleet', 'Mining Mayhem']
+type SidebarItem =
+  | { label: string; icon: string; nav: string }
+  | { label: string; icon: string; category: Category }
+  | { label: string; icon: string; modal: string; text: string; expand?: boolean }
+
+const sidebarQuickItems: SidebarItem[] = [
+  { label: 'Saved Games', icon: 'saved', nav: 'Saved Games' },
+  { label: 'Following', icon: 'heart', nav: 'Following' },
+  { label: 'Continue Playing', icon: 'continue', nav: 'Continue Playing' },
+  { label: 'Games For You', icon: 'star', nav: 'Games For You' },
+  { label: 'My Game Play', icon: 'history', nav: 'My Game Play' },
+]
+
+const sidebarGameItems: SidebarItem[] = [
+  { label: 'Only on Stake', icon: 'stake', category: 'Stake Originals' },
+  { label: 'New Releases', icon: 'spark', category: 'New Releases' },
+  { label: 'Slot Games', icon: 'slot', category: 'Slots' },
+  { label: 'Stake Originals', icon: 'drop', category: 'Stake Originals' },
+  { label: 'Live Dealers', icon: 'live', category: 'Live Dealers' },
+  { label: 'Burst Games', icon: 'burst', category: 'Megaways' },
+  { label: 'Stake Poker', icon: 'poker', modal: 'Stake Poker', text: 'Poker lobby opened. Tournaments, cash tables, and Sit & Go formats would appear here.' },
+  { label: 'Feature Spins', icon: 'feature', category: 'Jackpots' },
+  { label: 'Table Games', icon: 'table', category: 'Table Games' },
+  { label: 'Scratch Cards', icon: 'scratch', modal: 'Scratch Cards', text: 'Scratch card lobby opened. Instant prize cards and limited-time drops would live here.' },
+]
+
+const sidebarUtilityItems: SidebarItem[] = [
+  { label: 'Promotions', icon: 'gift', modal: 'Promotions', text: 'Promotions center opened. Bonus drops, reloads, and campaign details would live here.', expand: true },
+  { label: 'Challenges', icon: 'challenge', modal: 'Challenges', text: 'Challenges opened. Complete missions to earn leaderboard and streak rewards.' },
+  { label: 'Blog', icon: 'blog', modal: 'Blog', text: 'Blog opened. News, platform updates, and game guides would appear here.' },
+  { label: 'Affiliate', icon: 'affiliate', modal: 'Affiliate', text: 'Affiliate dashboard opened. Referral links, stats, and commission details would appear here.' },
+  { label: 'Sponsorships', icon: 'sponsor', modal: 'Sponsorships', text: 'Sponsorships opened. Brand partnerships and creator opportunities would appear here.', expand: true },
+  { label: 'Responsible Gaming', icon: 'shield', modal: 'Responsible Gaming', text: 'Responsible gaming tools opened. Session limits, cool-offs, and self-exclusion are available.' },
+  { label: 'Live Support', icon: 'support', modal: 'Live Support', text: 'Live support opened. Choose chat, ticket, or help center articles.' },
+]
 const categoryGuides = {
   'Stake Originals': {
     title: 'Stake Originals Style Games',
@@ -628,9 +663,10 @@ const categoryCounts = computed<Record<Category, number>>(() =>
 const filteredGames = computed(() => {
   let games = [...allGames.value]
 
-  if (activeNav.value === 'Faved Games') games = games.filter((game) => game.favorite)
+  if (activeNav.value === 'Faved Games' || activeNav.value === 'Saved Games') games = games.filter((game) => game.favorite)
   if (activeNav.value === 'Following') games = games.filter((game) => game.following)
-  if (activeNav.value === 'Continue Playing') games = games.filter((game) => game.recent)
+  if (activeNav.value === 'Continue Playing' || activeNav.value === 'My Game Play') games = games.filter((game) => game.recent)
+  if (activeNav.value === 'Games For You') games = games.filter((game) => game.favorite || game.following || game.players >= 120)
   if (!activeNav.value && activeCategory.value) games = games.filter((game) => game.category === activeCategory.value)
   if (activeProvider.value !== 'All Providers') games = games.filter((game) => game.provider === activeProvider.value)
   if (query.value.trim()) {
@@ -668,6 +704,18 @@ function setNav(item: string) {
   activeNav.value = item
   visibleCount.value = defaultVisibleCount
   showToast(`${item} selected`)
+}
+
+function isSidebarItemActive(item: SidebarItem) {
+  if ('category' in item) return !activeNav.value && activeCategory.value === item.category
+  if ('nav' in item) return activeNav.value === item.nav
+  return false
+}
+
+function triggerSidebarItem(item: SidebarItem) {
+  if ('category' in item) setCategory(item.category)
+  else if ('nav' in item) setNav(item.nav)
+  else openModal(item.modal, item.text)
 }
 
 function setProvider(provider: string) {
@@ -840,24 +888,33 @@ onUnmounted(() => {
       </div>
     </header>
 
-    <aside class="left-rail">
-      <section class="vip-card">
-        <button class="vip-top" type="button" @click="openModal('VIP Club', 'You are Level 1 - Bronze. Keep playing to unlock higher weekly rewards.')">
-          <div class="vip-icon">VIP</div>
-          <div><b>VIP Club</b><span>Level 1 - Bronze</span></div>
-        </button>
-        <button type="button" @click="openModal('Deposit', 'Deposit flow opened. Choose wallet, amount, and payment method.')">Deposit</button>
-      </section>
-      <nav>
-        <button v-for="item in navTop" :key="item" type="button" :class="{ active: activeNav === item }" @click="setNav(item)">
-          <span>+</span>{{ item }}
-        </button>
-        <p>BROWSE CATEGORIES</p>
-        <button v-for="item in categories" :key="item" type="button" :class="{ active: !activeNav && activeCategory === item }" @click="setCategory(item)">
-          <span>*</span>{{ item }}<em>{{ categoryCounts[item] }}</em>
-        </button>
+    <aside class="left-rail stake-rail">
+      <div class="rail-switcher">
+        <button class="rail-menu" type="button" aria-label="Menu" @click="showToast('Menu opened')"><span></span><span></span><span></span></button>
+        <button class="rail-tab active" type="button" @click="resetFilters">Casino</button>
+        <button class="rail-tab" type="button" @click="openModal('Poker', 'Poker lobby opened. Tables, tournaments, and hand history would live here.')">Poker</button>
+      </div>
+
+      <nav class="stake-nav">
+        <section>
+          <button v-for="item in sidebarQuickItems" :key="item.label" type="button" :class="{ active: isSidebarItemActive(item) }" @click="triggerSidebarItem(item)">
+            <span class="side-icon" :class="`icon-${item.icon}`" aria-hidden="true"></span>{{ item.label }}
+          </button>
+        </section>
+
+        <section>
+          <p>Games</p>
+          <button v-for="item in sidebarGameItems" :key="item.label" type="button" :class="{ active: isSidebarItemActive(item) }" @click="triggerSidebarItem(item)">
+            <span class="side-icon" :class="`icon-${item.icon}`" aria-hidden="true"></span>{{ item.label }}
+          </button>
+        </section>
+
+        <section>
+          <button v-for="item in sidebarUtilityItems" :key="item.label" type="button" :class="{ active: isSidebarItemActive(item) }" @click="triggerSidebarItem(item)">
+            <span class="side-icon" :class="`icon-${item.icon}`" aria-hidden="true"></span>{{ item.label }}<i v-if="'expand' in item && item.expand"></i>
+          </button>
+        </section>
       </nav>
-      <button class="support" type="button" @click="openModal('Help & Support', 'Support center opened. FAQs, live support, and responsible gaming links are available.')">Help & Support</button>
     </aside>
 
     <main class="main-content">
