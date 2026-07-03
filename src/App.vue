@@ -697,7 +697,7 @@ const tradePanels = {
     rows: [
       ['Big Bass Splash', 'Settled', '8:11 PM', '12.50', '4.80x', '60.00'],
       ['Plinko', 'Settled', '8:07 PM', '5.00', '1.60x', '8.00'],
-      ['Live Blackjack', 'Open', '8:03 PM', '20.00', 'Pending', 'Pending'],
+      ['Live Blackjack', 'Open', '8:03 PM', '20.00', '1.25x', '25.00'],
       ['Daily Wheel', 'Reward', '7:59 PM', '0.00', 'Bonus', '+12 pts'],
     ],
   },
@@ -1164,7 +1164,7 @@ onUnmounted(() => {
               <td
                 v-for="(cell, index) in row"
                 :key="`${row[0]}-${index}-${cell}`"
-                :class="{ win: index === 3 || index === 4 || index === 5, muted: cell === 'Pending' }"
+                :class="{ win: index === 3 || index === 4 || index === 5, muted: cell === 'Open' }"
               >
                 {{ cell }}
               </td>
@@ -1349,3 +1349,4 @@ onUnmounted(() => {
     </div>
   </div>
 </template>
+
