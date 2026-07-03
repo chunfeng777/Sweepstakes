@@ -992,8 +992,8 @@ onUnmounted(() => {
           </div>
         </div>
         <div v-if="!isLoggedIn" class="auth-actions">
-          <button class="login-btn" type="button" @click="isLoggedIn = true; showToast('Logged in')">Login</button>
-          <button class="register-btn" type="button" @click="isLoggedIn = true; showToast('Account registered')">Register</button>
+          <button class="login-btn" type="button" @click="openModal('Login', 'Login to OKK STAKES')">Login</button>
+          <button class="register-btn" type="button" @click="openModal('Register', 'Create an OKK STAKES account')">Register</button>
         </div>
         <div v-else class="top-menu">
           <button class="avatar-btn" type="button" aria-label="Account menu" @click="toggleTopMenu('profile')"><img class="user" :src="assets.user" alt="" /></button>
@@ -1310,7 +1310,38 @@ onUnmounted(() => {
     </div>
 
     <div v-if="modalTitle" class="modal-backdrop" @click.self="closeModal">
-      <section class="modal">
+      <section v-if="modalTitle === 'Login'" class="auth-modal">
+        <button class="auth-close" type="button" aria-label="Close" @click="closeModal">×</button>
+        <div class="auth-brand">OKK STAKES</div>
+        <label>Email or Username <b>*</b><input type="text" autocomplete="username" /></label>
+        <label>Password <b>*</b><span><input type="password" autocomplete="current-password" /><i>●</i></span></label>
+        <button class="forgot-link" type="button" @click="showToast('Password recovery opened')">Forgot Password?</button>
+        <button class="auth-primary" type="button" @click="isLoggedIn = true; closeModal(); showToast('Logged in')">Sign In</button>
+        <div class="auth-separator"><span></span>OR<span></span></div>
+        <button class="auth-alt" type="button" @click="isLoggedIn = true; closeModal(); showToast('Signed in with passkey')">Sign In with passkey</button>
+        <button class="auth-alt" type="button" @click="isLoggedIn = true; closeModal(); showToast('Signed in with Google')"><em>G</em> Sign In with Google</button>
+        <button class="auth-alt" type="button" @click="showToast('More sign in methods opened')">Sign in another way</button>
+        <p>Don’t have an account? <button type="button" @click="modalTitle = 'Register'">Register an Account</button></p>
+      </section>
+
+      <section v-else-if="modalTitle === 'Register'" class="auth-modal register-modal">
+        <button class="auth-close" type="button" aria-label="Close" @click="closeModal">×</button>
+        <div class="auth-brand">OKK STAKES</div>
+        <div class="auth-progress"><span></span><span></span></div>
+        <small>Step 1 / 2</small>
+        <h2>Create an Account</h2>
+        <p class="auth-warning">Due to licensing restrictions, access to OKK STAKES from your current location is not available.</p>
+        <label>Email <b>*</b><input type="email" autocomplete="email" /></label>
+        <label>Username <b>*</b><input type="text" autocomplete="username" /></label>
+        <label>Password <b>*</b><span><input type="password" autocomplete="new-password" /><i>●</i></span></label>
+        <label>State <b>*</b><select><option>Alabama</option><option>California</option><option>Florida</option><option>New York</option><option>Wyoming</option></select></label>
+        <label>Date of Birth <b>*</b><input type="text" placeholder="YYYY / MM / DD" /></label>
+        <label class="check-row"><input type="checkbox" /> Phone (Optional)</label>
+        <label class="check-row"><input type="checkbox" /> Referral Code (Optional)</label>
+        <button class="auth-primary" type="button" @click="isLoggedIn = true; closeModal(); showToast('Account registered')">Create Account</button>
+      </section>
+
+      <section v-else class="modal">
         <button class="modal-close" type="button" @click="closeModal">Close</button>
         <h2>{{ modalTitle }}</h2>
         <p>{{ modalText }}</p>
