@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 
 type Game = {
@@ -1210,13 +1210,69 @@ onUnmounted(() => {
         </div>
       </section>
 
-      <footer class="footer">
-        <div>
-          <strong>OKK STAKES</strong>
-          <p>OKK STAKES is a world-leading digital asset betting platform. We provide fair entertainment experiences.</p>
+      <footer class="footer stake-footer">
+        <div class="footer-columns">
+          <nav>
+            <b>Social Casino</b>
+            <button type="button" @click="resetFilters">Games</button>
+            <button type="button" @click="setCategory('Slots')">Slots</button>
+            <button type="button" @click="openModal('Poker', 'Poker lobby opened. Tables, tournaments, and hand history would live here.')">Poker</button>
+            <button type="button" @click="setCategory('Live Dealers')">Live Dealer</button>
+            <button type="button" @click="triggerSidebarItem(sidebarGameItems[9])">Scratch Cards</button>
+            <button type="button" @click="openModal('Publishers', 'Publisher list opened.')">Publishers</button>
+            <button type="button" @click="triggerSidebarItem(sidebarUtilityItems[0])">Promotions</button>
+          </nav>
+          <nav>
+            <b>Stake Originals</b>
+            <button type="button" @click="query = 'Plinko'; setCategory('Stake Originals')">Plinko</button>
+            <button type="button" @click="query = 'Mines'; setCategory('Stake Originals')">Mines</button>
+            <button type="button" @click="query = 'Dice'; setCategory('Stake Originals')">Dice</button>
+            <button type="button" @click="query = 'Crash'; setCategory('Stake Originals')">Crash</button>
+            <button type="button" @click="query = 'Limbo'; setCategory('Stake Originals')">Limbo</button>
+            <button type="button" @click="query = 'Hilo'; setCategory('Stake Originals')">Hilo</button>
+            <button type="button" @click="query = ''; setCategory('Stake Originals')">All Stake Originals</button>
+          </nav>
+          <nav>
+            <b>Support</b>
+            <button type="button" @click="triggerSidebarItem(sidebarUtilityItems[6])">Help Center</button>
+            <button type="button" @click="openModal('Fairness', 'Fairness details opened. Game logic, odds, and transparency notes would live here.')">Fairness</button>
+            <button type="button" @click="triggerSidebarItem(sidebarUtilityItems[5])">Gaming Helpline</button>
+            <button type="button" @click="triggerSidebarItem(sidebarUtilityItems[6])">Live Support</button>
+          </nav>
+          <nav>
+            <b>About Us</b>
+            <button type="button" @click="openModal('VIP Club', 'VIP Club opened. Levels, weekly bonuses, and reward progress would live here.')">VIP Club</button>
+            <button type="button" @click="triggerSidebarItem(sidebarUtilityItems[3])">Affiliate</button>
+            <button type="button" @click="openModal('Privacy Policy', 'Privacy policy opened.')">Privacy Policy</button>
+            <button type="button" @click="openModal('Terms of Service', 'Terms of service opened.')">Terms of Service</button>
+            <button type="button" @click="triggerSidebarItem(sidebarUtilityItems[5])">Responsible Play</button>
+          </nav>
+          <nav>
+            <b>FAQ</b>
+            <button type="button" @click="openModal('How-to Guides', 'How-to guides opened.')">How-to Guides</button>
+            <button type="button" @click="openModal('Social Casino Guide', 'Social casino guide opened.')">Social Casino Guide</button>
+            <button type="button" @click="openModal('Slot Game Guide', 'Slot game guide opened.')">Slot Game Guide</button>
+            <button type="button" @click="openModal('Live Dealer Guide', 'Live dealer guide opened.')">Live Dealer Guide</button>
+            <button type="button" @click="openModal('Customer Support Guide', 'Customer support guide opened.')">Customer Support Guide</button>
+            <button type="button" @click="openModal('Stake VIP Guide', 'Stake VIP guide opened.')">Stake VIP Guide</button>
+          </nav>
         </div>
-        <nav><b>PLATFORM</b><button type="button" @click="openModal('About Us', 'About OKK STAKES opened.')">About Us</button><button type="button" @click="openModal('Affiliate', 'Affiliate program opened.')">Affiliate</button><button type="button" @click="openModal('Blog', 'Blog opened.')">Blog</button></nav>
-        <nav><b>SUPPORT</b><button type="button" @click="openModal('Center', 'Support center opened.')">Center</button><button type="button" @click="openModal('Terms', 'Terms opened.')">Terms</button><button type="button" @click="openModal('Responsible Gaming', 'Responsible gaming tools opened.')">Responsible Gaming</button></nav>
+        <div class="footer-socials" aria-label="Social links">
+          <button type="button" @click="openModal('News', 'News channel opened.')">?</button>
+          <button type="button" @click="openModal('X', 'X social channel opened.')">X</button>
+          <button type="button" @click="openModal('Instagram', 'Instagram channel opened.')">◎</button>
+        </div>
+        <div class="footer-rule"></div>
+        <div class="footer-legal">
+          <p>? 2026 Stake.us | All Rights Reserved.</p>
+          <p>Stake.us is owned and operated by Sweepstakes Limited, registration number HE436222, registered address 7 Patrikiou Loumoumba, Block A, Office A13, 7560 Perivolia, Larnaca, Cyprus. Contact us at support@stake.us. For press inquiries, please contact press@stake.us.</p>
+          <p>NO PURCHASE NECESSARY to enter Sweepstakes. SWEEPSTAKES ARE VOID WHERE PROHIBITED BY LAW. For detailed rules, see <button type="button" @click="openModal('Terms of Service', 'Terms of service opened.')">terms of service</button></p>
+          <p>Stake is committed to responsible social play, for more information visit <button type="button" @click="triggerSidebarItem(sidebarUtilityItems[5])">Gamingaddictsanonymous.org</button></p>
+        </div>
+        <div class="footer-brand">Stake <span>.us</span></div>
+        <button class="certificate" type="button" @click="openModal('Tanzanite Certified', 'Certification details opened.')">
+          <i></i><span>TANZANITE<br />CERTIFIED</span>
+        </button>
       </footer>
     </main>
 
