@@ -1264,15 +1264,12 @@ onUnmounted(() => {
         </div>
         <div class="footer-rule"></div>
         <div class="footer-legal">
-          <p>? 2026 Stake.us | All Rights Reserved.</p>
-          <p>Stake.us is owned and operated by Sweepstakes Limited, registration number HE436222, registered address 7 Patrikiou Loumoumba, Block A, Office A13, 7560 Perivolia, Larnaca, Cyprus. Contact us at support@stake.us. For press inquiries, please contact press@stake.us.</p>
-          <p>NO PURCHASE NECESSARY to enter Sweepstakes. SWEEPSTAKES ARE VOID WHERE PROHIBITED BY LAW. For detailed rules, see <button type="button" @click="openModal('Terms of Service', 'Terms of service opened.')">terms of service</button></p>
-          <p>Stake is committed to responsible social play, for more information visit <button type="button" @click="triggerSidebarItem(sidebarUtilityItems[5])">Gamingaddictsanonymous.org</button></p>
+          <p>© 2026 OKK STAKES | 保留所有权利。</p>
+          <p>OKK STAKES 由 OKK STAKES LLC所有并运营，注册号为 <strong>2026-002006824</strong>，注册地址为 <strong>Room R, 30 N Gould St, Sheridan, WY 82801, United States</strong>。联系我们：<strong>support@okkstakes.com</strong></p>
+          <p>无需购买即可参加抽奖活动。抽奖活动在法律禁止的地区无效。详细规则请见：<button type="button" @click="openModal('Terms of Service', 'Terms of service opened.')">服务条款</button></p>
+          <p>OKK Stakes致力于负责任的社会游戏，欲了解更多信息，请访问<button type="button" @click="triggerSidebarItem(sidebarUtilityItems[5])">Gamingaddictsanonymous.org</button></p>
         </div>
         <div class="footer-brand">Stake <span>.us</span></div>
-        <button class="certificate" type="button" @click="openModal('Tanzanite Certified', 'Certification details opened.')">
-          <i></i><span>TANZANITE<br />CERTIFIED</span>
-        </button>
       </footer>
     </main>
 
