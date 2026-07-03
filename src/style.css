@@ -867,3 +867,86 @@ td:first-child { color: #d2e5f7; font-weight: 800; }
 .icon-shield::before { clip-path: polygon(50% 0,94% 18%,86% 72%,50% 100%,14% 72%,6% 18%); height: 18px; left: 0; top: 0; width: 18px; }
 .icon-support::before { border: 3px solid currentColor; border-bottom-color: transparent; border-radius: 50%; box-sizing: border-box; height: 16px; left: 1px; top: 1px; width: 16px; }
 .icon-support::after { border-radius: 1px; height: 7px; left: 2px; top: 10px; width: 4px; }
+.sidebar-page {
+  background: #0f212e;
+  border: 1px solid rgba(133,150,125,.06);
+  border-radius: 10px;
+  display: grid;
+  gap: 22px;
+  grid-template-columns: minmax(280px, .9fr) 1.4fr;
+  padding: 24px;
+}
+.sidebar-page-hero {
+  background: linear-gradient(145deg, #122b3a, #071a27);
+  border: 1px solid rgba(125,255,103,.12);
+  border-radius: 8px;
+  min-height: 260px;
+  padding: 28px;
+}
+.sidebar-page-hero span {
+  background: rgba(125,255,103,.12);
+  border-radius: 999px;
+  color: #7dff67;
+  display: inline-flex;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  padding: 6px 10px;
+  text-transform: uppercase;
+}
+.sidebar-page-hero h2 {
+  color: #fff;
+  font-size: 34px;
+  line-height: 40px;
+  margin: 22px 0 14px;
+}
+.sidebar-page-hero p {
+  color: #b1bad3;
+  font-size: 13px;
+  line-height: 22px;
+  margin: 0 0 26px;
+}
+.sidebar-page-hero button {
+  background: #7dff67;
+  border-radius: 6px;
+  color: #013a00;
+  font-size: 12px;
+  font-weight: 900;
+  padding: 12px 18px;
+}
+.sidebar-page-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.sidebar-page-grid article {
+  background: #162d3a;
+  border: 1px solid rgba(133,150,125,.08);
+  border-radius: 8px;
+  min-height: 220px;
+  padding: 20px;
+}
+.sidebar-page-grid strong {
+  color: #7dff67;
+  display: block;
+  font-size: 12px;
+  margin-bottom: 52px;
+}
+.sidebar-page-grid h3 {
+  color: #fff;
+  font-size: 17px;
+  line-height: 22px;
+  margin: 0 0 10px;
+}
+.sidebar-page-grid p {
+  color: #b1bad3;
+  font-size: 12px;
+  line-height: 20px;
+  margin: 0;
+}
+@media (max-width: 1180px) {
+  .sidebar-page { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .sidebar-page-grid { grid-template-columns: 1fr; }
+}

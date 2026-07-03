@@ -462,6 +462,108 @@ const sidebarUtilityItems: SidebarItem[] = [
   { label: 'Responsible Gaming', icon: 'shield', modal: 'Responsible Gaming', text: 'Responsible gaming tools opened. Session limits, cool-offs, and self-exclusion are available.' },
   { label: 'Live Support', icon: 'support', modal: 'Live Support', text: 'Live support opened. Choose chat, ticket, or help center articles.' },
 ]
+
+const sidebarPages: Record<string, { title: string; eyebrow: string; intro: string; cards: Array<{ title: string; text: string; metric: string }>; action: string }> = {
+  'Stake Poker': {
+    title: 'Stake Poker',
+    eyebrow: 'Poker Lobby',
+    intro: 'Join fast cash tables, scheduled tournaments, and casual Sit & Go rooms with clean table previews and player counts.',
+    cards: [
+      { title: 'Cash Tables', text: 'Browse no-limit and pot-limit tables by stake, speed, and seated players.', metric: '24 tables' },
+      { title: 'Tournaments', text: 'Daily guaranteed events, turbo formats, and final-table highlights.', metric: '$12K GTD' },
+      { title: 'Hand History', text: 'Review recent sessions, marked hands, and table performance snapshots.', metric: 'Live stats' },
+    ],
+    action: 'Open Poker Lobby',
+  },
+  'Scratch Cards': {
+    title: 'Scratch Cards',
+    eyebrow: 'Instant Games',
+    intro: 'A quick-play area for card-style reveals, limited drops, and prize tiles inspired by instant win formats.',
+    cards: [
+      { title: 'Daily Scratch', text: 'Fresh card themes rotate every day with simple reveal interactions.', metric: '12 cards' },
+      { title: 'Prize Tiles', text: 'Match symbols, uncover multipliers, and chase bonus tiles.', metric: 'Up to 500x' },
+      { title: 'Limited Drops', text: 'Seasonal card packs and timed reward windows for returning players.', metric: '3 active' },
+    ],
+    action: 'View Scratch Cards',
+  },
+  Promotions: {
+    title: 'Promotions',
+    eyebrow: 'Rewards Center',
+    intro: 'Track bonus drops, reload campaigns, leaderboard races, and limited-time casino promos in one place.',
+    cards: [
+      { title: 'Bonus Drops', text: 'Claimable drops tied to featured slots and live tables.', metric: '5 live' },
+      { title: 'Reload Offers', text: 'Timed reload windows and social casino reward boosts.', metric: 'Daily' },
+      { title: 'Leaderboards', text: 'Compete across slots, originals, and table game events.', metric: '$25K pool' },
+    ],
+    action: 'Browse Promotions',
+  },
+  Challenges: {
+    title: 'Challenges',
+    eyebrow: 'Missions',
+    intro: 'Complete category missions, streak tasks, and featured-game goals to unlock progress rewards.',
+    cards: [
+      { title: 'Spin Streak', text: 'Play selected slots across multiple days to keep the streak alive.', metric: '4 days' },
+      { title: 'Originals Run', text: 'Try Plinko, Mines, Dice, and Limbo in one mission path.', metric: '6 tasks' },
+      { title: 'Live Table Night', text: 'Join live dealer rounds and complete table milestones.', metric: '2 hours' },
+    ],
+    action: 'Start Challenges',
+  },
+  Blog: {
+    title: 'Blog',
+    eyebrow: 'Stories & Guides',
+    intro: 'Read game explainers, release notes, sweepstakes updates, and strategy-friendly category guides.',
+    cards: [
+      { title: 'New Game Notes', text: 'Short release posts for fresh slots, originals, and live tables.', metric: '18 posts' },
+      { title: 'How To Play', text: 'Beginner-friendly guides for Megaways, jackpots, and table games.', metric: 'Guides' },
+      { title: 'Community', text: 'Highlights from promos, winners, and upcoming feature previews.', metric: 'Weekly' },
+    ],
+    action: 'Read Blog',
+  },
+  Affiliate: {
+    title: 'Affiliate',
+    eyebrow: 'Partner Dashboard',
+    intro: 'Manage referral links, campaign assets, performance snapshots, and partner rewards.',
+    cards: [
+      { title: 'Referral Links', text: 'Generate links for casino, poker, and promotion landing pages.', metric: 'Ready' },
+      { title: 'Performance', text: 'Track clicks, signups, and estimated reward activity.', metric: 'Live' },
+      { title: 'Creative Kit', text: 'Download banners, logos, and social campaign snippets.', metric: '32 assets' },
+    ],
+    action: 'Open Affiliate',
+  },
+  Sponsorships: {
+    title: 'Sponsorships',
+    eyebrow: 'Brand Partnerships',
+    intro: 'A hub for creator collaborations, tournament sponsorships, and featured community events.',
+    cards: [
+      { title: 'Creator Program', text: 'Apply with audience details and preferred campaign formats.', metric: 'Open' },
+      { title: 'Event Slots', text: 'Reserve sponsorship placements for streams and tournaments.', metric: '8 slots' },
+      { title: 'Media Pack', text: 'View brand rules, visual assets, and campaign requirements.', metric: 'Updated' },
+    ],
+    action: 'View Sponsorships',
+  },
+  'Responsible Gaming': {
+    title: 'Responsible Gaming',
+    eyebrow: 'Player Tools',
+    intro: 'Set reminders, session limits, cooling-off periods, and account safety preferences.',
+    cards: [
+      { title: 'Session Reminders', text: 'Choose reminder intervals that fit your play habits.', metric: 'Off' },
+      { title: 'Play Limits', text: 'Configure daily, weekly, or monthly boundaries.', metric: 'Custom' },
+      { title: 'Cool-Off', text: 'Take a timed break with clear return controls.', metric: 'Available' },
+    ],
+    action: 'Manage Tools',
+  },
+  'Live Support': {
+    title: 'Live Support',
+    eyebrow: 'Help Center',
+    intro: 'Find quick answers, open a ticket, or start a live support chat for account and game questions.',
+    cards: [
+      { title: 'Live Chat', text: 'Connect with support for time-sensitive questions.', metric: '< 2 min' },
+      { title: 'Help Articles', text: 'Search guides for wallet, rewards, and gameplay questions.', metric: '120+' },
+      { title: 'Tickets', text: 'Create a ticket and track follow-up status from your profile.', metric: 'Tracked' },
+    ],
+    action: 'Contact Support',
+  },
+}
 const categoryGuides = {
   'Stake Originals': {
     title: 'Stake Originals Style Games',
@@ -637,6 +739,8 @@ const chat = ref<ChatEntry[]>([
 
 const activeNav = ref('')
 const activeCategory = ref<Category>('Live Dealers')
+const activeSidebarKey = ref('Live Dealers')
+const activeSidebarPage = ref('')
 const activeProvider = ref('All Providers')
 const activeSort = ref('Most Popular')
 const activeBetTab = ref<BetTab>('Recent Bets')
@@ -684,7 +788,8 @@ const filteredGames = computed(() => {
 
 const visibleGames = computed(() => filteredGames.value.slice(0, visibleCount.value))
 const canLoadMore = computed(() => visibleCount.value < filteredGames.value.length)
-const lobbyTitle = computed(() => activeNav.value || activeCategory.value || 'All Games')
+const activeSidebarPageContent = computed(() => activeSidebarPage.value ? sidebarPages[activeSidebarPage.value] : null)
+const lobbyTitle = computed(() => activeSidebarPageContent.value?.title || activeNav.value || activeCategory.value || 'All Games')
 const currentSlide = computed(() => carouselSlides[activeSlide.value])
 const activeTradePanel = computed(() => tradePanels[activeBetTab.value])
 const activeCategoryGuide = computed(() => categoryGuides[activeCategory.value] ?? categoryGuides.Slots)
@@ -696,26 +801,33 @@ function showToast(message: string) {
 function setCategory(category: Category) {
   activeCategory.value = category
   activeNav.value = ''
+  activeSidebarPage.value = ''
   visibleCount.value = defaultVisibleCount
   showToast(`${category} selected`)
 }
 
 function setNav(item: string) {
   activeNav.value = item
+  activeSidebarPage.value = ''
   visibleCount.value = defaultVisibleCount
   showToast(`${item} selected`)
 }
 
 function isSidebarItemActive(item: SidebarItem) {
-  if ('category' in item) return !activeNav.value && activeCategory.value === item.category
-  if ('nav' in item) return activeNav.value === item.nav
-  return false
+  return activeSidebarKey.value === item.label
 }
 
 function triggerSidebarItem(item: SidebarItem) {
+  activeSidebarKey.value = item.label
   if ('category' in item) setCategory(item.category)
   else if ('nav' in item) setNav(item.nav)
-  else openModal(item.modal, item.text)
+  else {
+    activeSidebarPage.value = item.modal
+    activeNav.value = ''
+    query.value = ''
+    visibleCount.value = defaultVisibleCount
+    showToast(`${item.label} selected`)
+  }
 }
 
 function setProvider(provider: string) {
@@ -735,6 +847,8 @@ function resetFilters() {
   query.value = ''
   activeProvider.value = 'All Providers'
   activeNav.value = ''
+  activeSidebarPage.value = ''
+  activeSidebarKey.value = ''
   visibleCount.value = defaultVisibleCount
   openMenu.value = null
   showToast('Filters cleared')
@@ -959,51 +1073,73 @@ onUnmounted(() => {
         <div class="section-heading">
           <div>
             <span>{{ lobbyTitle }}</span>
-            <b>{{ filteredGames.length }} games</b>
+            <b v-if="activeSidebarPageContent">{{ activeSidebarPageContent.eyebrow }}</b>
+            <b v-else>{{ filteredGames.length }} games</b>
           </div>
           <small>{{ toast }}</small>
         </div>
-        <div class="toolbar">
-          <div>
-            <div class="menu-wrap">
-              <button type="button" @click="openMenu = openMenu === 'filter' ? null : 'filter'">Filter</button>
-              <div v-if="openMenu === 'filter'" class="dropdown">
-                <button type="button" @click="resetFilters">Clear all</button>
-                <button v-for="item in navTop" :key="item" type="button" @click="setNav(item)">{{ item }}</button>
-                <button v-for="item in categories" :key="item" type="button" @click="setCategory(item)">{{ item }}</button>
+
+        <template v-if="activeSidebarPageContent">
+          <div class="sidebar-page">
+            <div class="sidebar-page-hero">
+              <span>{{ activeSidebarPageContent.eyebrow }}</span>
+              <h2>{{ activeSidebarPageContent.title }}</h2>
+              <p>{{ activeSidebarPageContent.intro }}</p>
+              <button type="button" @click="showToast(`${activeSidebarPageContent.title} action selected`)">{{ activeSidebarPageContent.action }}</button>
+            </div>
+            <div class="sidebar-page-grid">
+              <article v-for="card in activeSidebarPageContent.cards" :key="card.title">
+                <strong>{{ card.metric }}</strong>
+                <h3>{{ card.title }}</h3>
+                <p>{{ card.text }}</p>
+              </article>
+            </div>
+          </div>
+        </template>
+
+        <template v-else>
+          <div class="toolbar">
+            <div>
+              <div class="menu-wrap">
+                <button type="button" @click="openMenu = openMenu === 'filter' ? null : 'filter'">Filter</button>
+                <div v-if="openMenu === 'filter'" class="dropdown">
+                  <button type="button" @click="resetFilters">Clear all</button>
+                  <button v-for="item in navTop" :key="item" type="button" @click="setNav(item)">{{ item }}</button>
+                  <button v-for="item in categories" :key="item" type="button" @click="setCategory(item)">{{ item }}</button>
+                </div>
+              </div>
+              <div class="menu-wrap">
+                <button type="button" @click="openMenu = openMenu === 'provider' ? null : 'provider'">{{ activeProvider }}</button>
+                <div v-if="openMenu === 'provider'" class="dropdown">
+                  <button v-for="provider in providers" :key="provider" type="button" :class="{ picked: activeProvider === provider }" @click="setProvider(provider)">{{ provider }}</button>
+                </div>
               </div>
             </div>
-            <div class="menu-wrap">
-              <button type="button" @click="openMenu = openMenu === 'provider' ? null : 'provider'">{{ activeProvider }}</button>
-              <div v-if="openMenu === 'provider'" class="dropdown">
-                <button v-for="provider in providers" :key="provider" type="button" :class="{ picked: activeProvider === provider }" @click="setProvider(provider)">{{ provider }}</button>
+            <div>
+              <button class="grid-icon" type="button" @click="showToast('Grid view selected')">Grid</button>
+              <div class="menu-wrap align-right">
+                <button type="button" @click="openMenu = openMenu === 'sort' ? null : 'sort'">{{ activeSort }}</button>
+                <div v-if="openMenu === 'sort'" class="dropdown">
+                  <button v-for="sort in sortOptions" :key="sort" type="button" :class="{ picked: activeSort === sort }" @click="setSort(sort)">{{ sort }}</button>
+                </div>
               </div>
             </div>
           </div>
-          <div>
-            <button class="grid-icon" type="button" @click="showToast('Grid view selected')">Grid</button>
-            <div class="menu-wrap align-right">
-              <button type="button" @click="openMenu = openMenu === 'sort' ? null : 'sort'">{{ activeSort }}</button>
-              <div v-if="openMenu === 'sort'" class="dropdown">
-                <button v-for="sort in sortOptions" :key="sort" type="button" :class="{ picked: activeSort === sort }" @click="setSort(sort)">{{ sort }}</button>
-              </div>
-            </div>
+          <div class="game-grid">
+            <article v-for="game in visibleGames" :key="game.title" class="game-card" :class="{ selected: selectedGame?.title === game.title }">
+              <button class="poster" type="button" @click="openGame(game)">
+                <img :src="game.img ?? coverImage(game)" :alt="game.title" />
+                <span class="badge">S</span>
+              </button>
+              <button class="player-count" type="button" @click="openGame(game)"><i></i>{{ game.players }} playing</button>
+            </article>
           </div>
-        </div>
-        <div class="game-grid">
-          <article v-for="game in visibleGames" :key="game.title" class="game-card" :class="{ selected: selectedGame?.title === game.title }">
-            <button class="poster" type="button" @click="openGame(game)">
-              <img :src="game.img ?? coverImage(game)" :alt="game.title" />
-              <span class="badge">S</span>
-            </button>
-            <button class="player-count" type="button" @click="openGame(game)"><i></i>{{ game.players }} playing</button>
-          </article>
-        </div>
-        <div class="load-more">
-          <span>LOAD MORE</span>
-          <button v-if="canLoadMore" type="button" @click="loadMore">View More Games</button>
-          <button v-else type="button" @click="showToast('All matching games are visible')">All Games Loaded</button>
-        </div>
+          <div class="load-more">
+            <span>LOAD MORE</span>
+            <button v-if="canLoadMore" type="button" @click="loadMore">View More Games</button>
+            <button v-else type="button" @click="showToast('All matching games are visible')">All Games Loaded</button>
+          </div>
+        </template>
       </section>
 
       <section class="panel bets">
