@@ -556,7 +556,7 @@ td:first-child { color: #d2e5f7; font-weight: 800; }
 }
 .wheel-card {
   background: linear-gradient(135deg, #193d30, #2c7b44);
-  min-height: 206px;
+  min-height: 232px;
   padding: 28px;
   position: relative;
 }
@@ -564,16 +564,15 @@ td:first-child { color: #d2e5f7; font-weight: 800; }
 .wheel-card p {
   margin: 0;
   max-width: 138px;
-  padding-bottom: 48px;
+  padding-bottom: 78px;
 }
 .wheel-card strong {
-  bottom: 30px;
+  bottom: 60px;
   color: #7dff67;
   display: block;
   font-size: 30px;
   left: 28px;
   line-height: 1;
-  max-width: 82px;
   position: absolute;
 }
 .wheel-card button {
